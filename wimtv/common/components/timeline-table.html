@@ -1,0 +1,24 @@
+<div>
+	<button class="btn btn-primary margin-top-10" ng-click="vm.tableEnabled = !vm.tableEnabled;" ng-bind="vm.tableEnabled ? '{{'lang.wimcast.daily.TABLE-HIDE' | translate}}' : '{{'lang.wimcast.daily.TABLE-SHOW' | translate}}'"
+	tooltip-placement="top"
+	uib-tooltip="{{'lang.wimcast.daily.TABLE-BUTTON-HELP' | translate}}"></button>
+	<button class="hidden" id="table-recalc" ng-click="vm.recalcTable()"></button>
+	<div ng-if="vm.tableEnabled">
+		<table class="col-xs-12 table timeline-table text-center margin-top-5">
+			<tr>
+				<th>n°</th>
+				<th></th>
+				<th>{{'lang.wimbox.VIDEO-TITLE' | translate}}</th>
+				<th>{{'lang.wimcast.daily.TABLE-START' | translate}}</th>
+				<th>{{'lang.wimcast.daily.TABLE-END' | translate}}</th>
+			</tr>
+			<tr ng-repeat="(key, val) in vm.items">
+				<td ng-bind="$index"></td>
+				<td><div class="thumbnail-table" style="background-image: url('{{$root.getThumbnailUrl(val.thumbnailId)}}');margin:0 auto;"></div></td>
+				<td ng-bind="val.content"></td>
+				<td ng-bind="val.start | amDateFormat:'HH:mm:ss'"></td>
+				<td ng-bind="val.end | amDateFormat:'HH:mm:ss'"></td>
+			</tr>
+		</table>
+	</div>
+</div>
